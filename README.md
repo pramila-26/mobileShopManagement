@@ -1,3 +1,4 @@
+Mobile Shop Management System:
 A command-line application developed in C for efficiently managing mobile inventory in a retail setting. This Mobile Shop Management System allows users to add, edit, display, search, and delete mobile records through a simple, menu-driven interface. The project is designed to simplify inventory management, reduce manual errors, and provide a user-friendly solution for mobile shop owners and staff.
 
 Table of Contents:
