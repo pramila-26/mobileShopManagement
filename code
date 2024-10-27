@@ -1,0 +1,138 @@
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <string.h> 
+#define MAX_MOBILES 100 
+#define NAME_LENGTH 50 
+#define BRAND_LENGTH 50 
+typedef struct { 
+char name[NAME_LENGTH]; 
+char brand[BRAND_LENGTH]; 
+float price; 
+} Mobile; 
+Mobile mobiles[MAX_MOBILES]; 
+int mobile_count = 0; 
+void add_mobile() { 
+if (mobile_count >= MAX_MOBILES) { 
+printf("Mobile storage is full!\n"); 
+return; 
+} 
+    printf("Enter mobile name: "); 
+    scanf("%s", mobiles[mobile_count].name); 
+    printf("Enter mobile brand: "); 
+    scanf("%s", mobiles[mobile_count].brand); 
+    printf("Enter mobile price: "); 
+    scanf("%f", &mobiles[mobile_count].price); 
+    mobile_count++; 
+    printf("Mobile added successfully!\n\n"); 
+} 
+ 
+void edit_mobile() { 
+    char name[NAME_LENGTH]; 
+    printf("Enter the name of the mobile to edit: "); 
+    scanf("%s", name); 
+    for (int i = 0; i < mobile_count; i++) { 
+        if (strcmp(mobiles[i].name, name) == 0) { 
+            printf("Enter new mobile brand: "); 
+            scanf("%s", mobiles[i].brand); 
+            printf("Enter new mobile price: "); 
+            scanf("%f", &mobiles[i].price); 
+            printf("Mobile information updated successfully!\n\n"); 
+            return; 
+        } 
+    } 
+    printf("Mobile not found!\n\n"); 
+} 
+ 
+void display_mobiles() { 
+    if (mobile_count == 0) { 
+        printf("No mobiles available.\n\n"); 
+        return; 
+    } 
+    for (int i = 0; i < mobile_count; i++) { 
+        printf("Mobile %d: Name: %s, Brand: %s, Price: %.2f\n", i + 1, 
+mobiles[i].name, mobiles[i].brand, mobiles[i].price); 
+    } 
+    printf("\n"); 
+} 
+ 
+void search_mobile() { 
+    char name[NAME_LENGTH]; 
+    printf("Enter the name of the mobile to search: "); 
+    scanf("%s", name);
+    for (int i = 0; i < mobile_count; i++) { 
+        if (strcmp(mobiles[i].name, name) == 0) { 
+            printf("Found Mobile: Name: %s, Brand: %s, Price: %.2f\n\n", 
+mobiles[i].name, mobiles[i].brand, mobiles[i].price); 
+            return; 
+        } 
+    } 
+    printf("Mobile not found!\n\n"); 
+} 
+ 
+void delete_mobile() { 
+    char name[NAME_LENGTH]; 
+    printf("Enter the name of the mobile to delete: "); 
+    scanf("%s", name); 
+    for (int i = 0; i < mobile_count; i++) { 
+        if (strcmp(mobiles[i].name, name) == 0) { 
+            for (int j = i; j < mobile_count - 1; j++) { 
+                mobiles[j] = mobiles[j + 1]; 
+            } 
+            mobile_count--; 
+            printf("Mobile deleted successfully!\n\n"); 
+            return; 
+        } 
+    } 
+    printf("Mobile not found!\n\n"); 
+} 
+ 
+void exit_system() { 
+    printf("Exiting the system. Goodbye!\n"); 
+    exit(0); 
+} 
+ 
+int main() { 
+    int choice; 
+     
+    while (1) { 
+        printf("1. Add Mobile\n"); 
+        printf("2. Edit Mobile\n"); 
+        printf("3. Display Mobiles\n"); 
+        printf("4. Search Mobile\n"); 
+        printf("5. Delete Mobile\n"); 
+        printf("6. Exit\n"); 
+        printf("Enter your choice: "); 
+        scanf("%d", &choice); 
+        switch (choice) { 
+            case 1: 
+                add_mobile(); 
+                break; 
+            case 2: 
+                edit_mobile(); 
+                break; 
+            case 3: 
+                display_mobiles(); 
+                break; 
+            case 4: 
+                search_mobile(); 
+                break; 
+            case 5: 
+                delete_mobile(); 
+                break; 
+            case 6: 
+                exit_system(); 
+                break; 
+            default: 
+                printf("Invalid choice! Please try again.\n\n"); 
+        } 
+    } 
+     
+    return 0; 
+} 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
